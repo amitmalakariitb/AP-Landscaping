@@ -2,6 +2,7 @@ const express = require('express');
 const sgMail = require('@sendgrid/mail');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
 
@@ -14,6 +15,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use(express.static(path.join(__dirname, 'public')));
 app.post('/send-email', (req, res) => {
     const userContact = req.body.userContact;
 
@@ -34,6 +36,10 @@ app.post('/send-email', (req, res) => {
             console.error(error);
             res.status(500).send('Internal Server Error');
         });
+});
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(PORT, () => {
