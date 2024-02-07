@@ -18,6 +18,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.post('/send-email', (req, res) => {
     const { userContact } = req.body;
+    console.log(userContact)
 
     const userContactFormatted = `
     Name: ${userContact.name}
