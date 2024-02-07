@@ -17,13 +17,14 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.post('/send-email', (req, res) => {
-    const userContact = req.body.userContact;
+    console.log(req)
+    const { userContact } = req.body;
 
     const msg = {
         to: 'malakaramiit@gmail.com',
         from: process.env.SENDER_EMAIL,
         subject: 'Contact Information',
-        text: `User Contact: ${userContact}`,
+        text: `User Details: ${userContact}`,
     };
 
 
