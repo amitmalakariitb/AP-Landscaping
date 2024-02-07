@@ -81,14 +81,19 @@
             var phone = document.getElementById('phone').value;
             var message = document.getElementById('message').value;
 
-            var userContact = `Name: ${name}, Email: ${email}, Phone: ${phone}, Message: ${message}`;
+            const userContact = {
+                name: name,
+                email: email,
+                phone: phone,
+                message: message
+            };
 
-            fetch('https://www-aplandscaping.onrender.com/send-email', {
+            fetch('http://localhost:3000/send-email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ userContact: userContact }),
+                body: JSON.stringify({ userContact }),
             })
                 .then(response => {
                     if (!response.ok) {
