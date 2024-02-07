@@ -24,7 +24,7 @@ app.post('/send-email', (req, res) => {
         to: 'malakaramiit@gmail.com',
         from: process.env.SENDER_EMAIL,
         subject: 'Contact Information',
-        text: `User Details: ${userContact}`,
+        text: `Contact Information\n\nUser Details:\n${userContact}`,
     };
 
 
