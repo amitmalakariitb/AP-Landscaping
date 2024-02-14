@@ -21,7 +21,7 @@ app.post('/send-email', (req, res) => {
     const { name, email, phone, message } = req.body.userContact;
 
     const msg = {
-        to: 'malakaramiit@gmail.com',
+        to: 'Asingh@sbconsultantllc.com',
         from: process.env.SENDER_EMAIL,
         subject: 'Contact Information',
         text: `User Details:\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`,
@@ -31,7 +31,7 @@ app.post('/send-email', (req, res) => {
 
     sgMail.send(msg)
         .then(() => {
-            console.log('Email sent successfully');
+            console.log('Email sent successfully', msg.to);
             res.status(200).send('Email sent successfully');
         })
         .catch((error) => {
