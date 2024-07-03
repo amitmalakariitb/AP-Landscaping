@@ -31,13 +31,17 @@ app.post('/send-email', (req, res) => {
 
     sgMail.send(msg)
         .then(() => {
-            console.log('Email sent successfully', msg.to);
+            console.log('Email sent successfully');
             res.status(200).send('Email sent successfully');
         })
         .catch((error) => {
             console.error(error);
             res.status(500).send('Internal Server Error');
         });
+});
+
+app.get('/terms-and-conditions', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'terms-and-conditions.html'));
 });
 
 app.get('*', (req, res) => {
